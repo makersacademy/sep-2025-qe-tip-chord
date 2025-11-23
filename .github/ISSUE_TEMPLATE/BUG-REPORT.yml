@@ -1,0 +1,47 @@
+name: 🐛 Giga Bug
+description: Template for reporting bugs
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      options:
+        - v1
+        - v2
+        - v3
+        - v4
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - "Critical"
+        - "High"
+        - "Medium"
+        - "Low"
+        - "Trivial"
+  - type: dropdown
+    id: suggested_priority
+    attributes:
+      label: Suggested Priority
+      description: To aid triage and review of the issue
+      options:
+        - High
+        - Medium
+        - Low
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed Behaviour
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behaviour
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
+      value: |
+        1. 
+        2. 
+        3. 
