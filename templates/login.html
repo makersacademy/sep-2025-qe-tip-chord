@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log In</title>
+    </head>
+    <body>
+        <p>Log In</p>
+        {% include 'menu_bar.html' %}
+        <form action="/home" method="get">
+            <input type="text" name="username">
+            <input type="text" name="password">
+            <input type="submit" value="Log in">
+        </form>
+    </body>
+</html>

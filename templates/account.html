@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Account</title>
+    </head>
+    <body>
+        <p>Account</p>
+        {% include 'menu_bar.html' %}
+        {% for booking_detail in booking_details %}
+        <div>
+            <p>{{ booking_detail.ticket_count }} for {{ booking_detail.gig.band }} @ {{ booking_detail.gig.venue }}, {{ booking_detail.gig.location }} on {{ booking_detail.gig.datetime }}</p>
+        </div>
+        {% endfor %}
+    </body>
+</html>

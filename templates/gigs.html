@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gigs</title>
+    </head>
+    <body>
+        <p>Gigs</p>
+        {% include 'menu_bar.html' %}
+        <p>You have booked {{ number_bookings }}% of the gigs available!</p>
+        {% for gig in gigs %}
+        <div>
+            <p>{{ gig.band }} @ {{ gig.venue }}, {{ gig.location }}</p>
+            <p>{{ gig.datetime }}</p>
+        </div>
+        {% endfor %}
+    </body>
+</html>
