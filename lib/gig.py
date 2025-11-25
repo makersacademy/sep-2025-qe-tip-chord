@@ -20,3 +20,9 @@ class Gig:
 
         # for maps lookup
         self.postcode = postcode
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
+    def datetime_pretty(self):
+        return self.datetime.strftime("%Y-%m-%d %H:%M")

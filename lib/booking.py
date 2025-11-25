@@ -15,3 +15,6 @@ class Booking:
         self.gig_id = gig_id
         self.user_id = user_id
         self.ticket_count = ticket_count
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__

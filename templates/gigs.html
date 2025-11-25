@@ -2,15 +2,33 @@
 <html>
     <head>
         <title>Gigs</title>
+        <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <p>Gigs</p>
+        <p id="element-c27b2f2"><img src="/static/images/logo.bmp" width="100px" />Gigs</p>
         {% include 'menu_bar.html' %}
-        <p>You have booked {{ number_bookings }}% of the gigs available!</p>
+        <form action="/gigs" method="post">
+            <label for="location">Filter by location:</label>
+            <select name="location" id="location">
+                {% for location in locations %}
+                {% if location == selected_location %}
+                <option selected value="{{ location }}">{{ location }}</option>
+                {% else %}
+                <option value="{{ location }}">{{ location }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <label for="date_from">date from:</label>
+            <input type="text" name="date_from" value="{{ date_from }}" />
+            <label for="date_to">date to:</label>
+            <input type="text" name="date_to" value="{{ date_to }}" />
+            <p><input type="submit" value="Go"></p>
+        </form>
         {% for gig in gigs %}
         <div>
-            <p>{{ gig.band }} @ {{ gig.venue }}, {{ gig.location }}</p>
-            <p>{{ gig.datetime }}</p>
+            <p class="element-72fdd38">{{ gig.band }} @ {{ gig.venue }}, {{ gig.location }}</p>
+            <p class="element-7fd0a75">{{ gig.datetime_pretty() }}</p>
+            <p class="element-5c26aa7"><a href="/gigs/{{ gig.id }}">More details & booking</a></p>
         </div>
         {% endfor %}
     </body>

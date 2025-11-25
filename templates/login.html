@@ -2,12 +2,15 @@
 <html>
     <head>
         <title>Log In</title>
+        <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <p>Log In</p>
+        <p id="element-2b685e0"><img src="/static/images/logo.bmp" width="100px" />Log In</p>
         {% include 'menu_bar.html' %}
-        <form action="/home" method="get">
-            <input type="text" name="username">
+        <form action="/login" method="post">
+            <label>Username:</label>
+            <input type="text" name="usernmae">
+            <label>Password:</label>
             <input type="text" name="password">
             <input type="submit" value="Log in">
         </form>

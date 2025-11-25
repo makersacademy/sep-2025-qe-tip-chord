@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gig: {{ gig.band }}</title>
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <p id="element-632c964"><img src="/static/images/logo.bmp" width="100px" />Gig: {{ gig.band }} @ {{ gig.venue }}</p>
+        {% include 'menu_bar.html' %}
+        <b>When</b>
+        <p id="element-00a218f">{{ gig.datetime_pretty() }}</p>
+        <b>Where</b>
+        <p id="element-e495854">{{ gig.venue }}</p><p>{{ gig.location }}</p><p><a href="https://www.google.co.uk/maps/place/{{ gig.postcode }}/">{{ gig.postcode }}</a></p>
+        <b>Book this gig now on Giga!</b>
+        {% if already_booked_gig %}
+        <p id="element-2b6067e">You have already <a href="/account">booked this gig</a></p>
+        {% elif gig_in_past %}
+        <p id="element-90ba1ee">Too late - tickets can no longer be booked for this gig</p>
+        {% elif logged_in_as %}
+        <form action="/book_gig/{{ gig.id }}" method="post">
+            <label>Number of tickets wanted:</label>
+            <input type="text" name="ticket_count">
+            <input type="submit" value="Book gig">
+        </form>
+        {% else %}
+        <p id="element-dd069fa">You need to <a href="/login">log in</a> before booking tickets</p>
+        {% endif %}
+    </body>
+</html>

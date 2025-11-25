@@ -1,0 +1,59 @@
+name: Run Giga Unit Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build custom Postgres image
+      run: |
+        docker build -t custom-postgres -f ci_config/Dockerfile.postgres .
+        if docker ps -q --filter "ancestor=postgres:latest" | grep -q .; then
+          docker stop $(docker ps -q --filter "ancestor=postgres:latest")
+        fi
+        docker run --name pg-container -d -p 5432:5432 \
+          -e POSTGRES_DB=giga_test \
+          -e POSTGRES_USER=postgres \
+          -e POSTGRES_HOST_AUTH_METHOD=trust \
+          custom-postgres
+
+    - name: Wait for PostgreSQL to be ready (1/2)
+      run: |
+        timeout 30s bash -c '
+        until docker exec pg-container pg_isready -U postgres; do
+          echo "Waiting for PostgreSQL to be ready..."
+          sleep 2
+        done
+        '
+
+    - name: Wait for PostgreSQL to be ready (2/2)
+      run: |
+        until docker exec pg-container psql -U postgres -c "\l"; do
+          echo "Waiting for PostgreSQL to accept connections..."
+          sleep 2
+        done
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Install Playwright browsers
+      run: playwright install
+
+    - name: Create database if it doesn't exist
+      run: psql -h localhost -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'giga_test'" | grep -q 1 || psql -h localhost -U postgres -c "CREATE DATABASE giga_test;"
+
+    - name: Run tests
+      run: pytest

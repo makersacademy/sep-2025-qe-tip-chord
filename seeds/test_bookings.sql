@@ -10,7 +10,9 @@ CREATE TABLE bookings (
     user_id INTEGER,
     ticket_count INTEGER,
     constraint fk_gig foreign key(gig_id)
-      references gigs(id)
+      references gigs(id),
+    constraint fk_user foreign key(user_id)
+      references users(id)
 );
 
 INSERT INTO bookings (datetime, gig_id, user_id, ticket_count) VALUES ('2025-11-22 15:43', 1, 1, 1);
