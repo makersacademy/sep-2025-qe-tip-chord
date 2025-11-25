@@ -13,3 +13,14 @@ def test_gig_attributes():
 def test_pretty_datetime():
     gig = Gig(None, "2024-06-04 19:30", None, None, None, None)
     assert gig.datetime_pretty() == "2024-06-04 19:30"
+
+def test_jsonify_object():
+    gig = Gig(111, "2024-06-04 19:30", "Placebo", "Brixton Academy", "London", "SW1 2AA")
+    assert gig.jsonify() == {
+        "id": 111,
+        "datetime": "2024-06-04 19:30",
+        "band": "Placebo",
+        "venue": "Brixton Academy",
+        "location": "London",
+        "postcode": "SW1 2AA"
+    }

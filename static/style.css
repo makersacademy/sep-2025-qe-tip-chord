@@ -1,10 +1,48 @@
 body {
     background-color: #d7d4c9;
 }
-table {
-    background-color: #000000;
-    width: 100%;
+#page-content {
+    margin-left: 20px;
+    max-width: 850px;
 }
-table a {
-    color: #FFFFFF;
+h2 {
+    margin-bottom: 0;
+}
+#logo {
+    margin: 15px;
+    margin-right: 30px;
+}
+.menu_bar {
+    background-color: black;
+    height: 3em;
+    margin-bottom: 10px; /** spacing below menu, before page content **/
+}
+.btn-menu{
+    --bs-btn-color:#fff;
+    --bs-btn-bg:#c7c4b9;
+    --bs-btn-border-color:#c7c4b9;
+    --bs-btn-hover-color:#fff;
+    --bs-btn-hover-bg:#a7a499;
+    --bs-btn-hover-border-color:#a7a499;
+    --bs-btn-active-color:#bfb;
+    --bs-btn-active-bg:#979489;
+    --bs-btn-active-border-color:#979489;
+    --bs-btn-padding-y:0.25rem;
+    --bs-btn-font-size:0.875rem;
+    --bs-btn-border-radius:var(--bs-border-radius-sm)
+}
+.date-picker {
+    min-width: 180px;
+}
+.gig {
+    background-color: #fff;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 1px;
+    margin-bottom: 20px;
+    width: 600px;
+    border-radius: 0.375rem;
+}
+.login-field {
+    margin-bottom: 10px;
 }

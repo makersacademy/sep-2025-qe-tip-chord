@@ -1,8 +1,13 @@
-<table><tr>
-    <td><a href="/home">Home</a></td>
-    <td><a href="/gigs">Gigs</a></td>
-    <td><a href="/login">Log In</a></td>
-    <td><a href="/logout">Log Out</a></td>
-    <td><a href="/account">Account</a></td>
-    <td><a href="/about">About</a></td>
-</tr></table>
+<div class="container-fluid">
+    <div class="row menu_bar align-items-center">
+        <div class="col-sm-1"><a href="/home" role="button" class="btn btn-menu d-block">Home</a></div>
+        <div class="col-sm-1"><a href="/gigs" role="button" class="btn btn-menu d-block">Gigs</a></div>
+        {% if logged_in_as %}
+        <div class="col-sm-1"><a href="/logout" role="button" class="btn btn-menu d-block">Log Out</a></div>
+        {% else %}
+        <div class="col-sm-1"><a href="/login" role="button" class="btn btn-menu d-block">Log In</a></div>
+        {% endif %}
+        <div class="col-sm-1"><a href="/account" role="button" class="btn btn-menu d-block">Account</a></div>
+        <div class="col-sm-1"><a href="/about" role="button" class="btn btn-menu d-block">About</a></div>
+    </div>
+</div>

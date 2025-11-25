@@ -44,7 +44,7 @@ class DatabaseConnection:
         'in your app.py file (or in your tests)?'
 
     def _check_connection(self):
-        if self.connection is None:
+        if not hasattr(self, "connection"):
             raise Exception(self.CONNECTION_MESSAGE)
 
     def _database_name(self):

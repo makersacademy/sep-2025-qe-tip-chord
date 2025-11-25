@@ -1,11 +1,12 @@
 from lib.gig import Gig
+from datetime import date
 
 class GigRepository:
     def __init__(self, connection):
         self._connection = connection
 
     def all(self):
-        rows = self._connection.execute('SELECT * FROM gigs')
+        rows = self._connection.execute('SELECT * FROM gigs ORDER BY datetime')
         gigs = []
         for row in rows:
             gigs.append(Gig(row["id"], row["datetime"], row["band"], row["venue"], row["location"], row["postcode"]))
@@ -26,14 +27,16 @@ class GigRepository:
             gigs.append(Gig(row["id"], row["datetime"], row["band"], row["venue"], row["location"], row["postcode"]))
         return gigs
 
-    def get_by_dates(self, date_from="1900-01-01", date_to="3000-01-01"):
-        rows = self._connection.execute('SELECT * FROM gigs WHERE datetime BETWEEN %s AND %s ORDER BY datetime', [date_from, date_to])
+    def get_by_dates(self, date_from="2000-01-01", date_to="2100-01-01"):
+        if date.fromisoformat(date_from) > date.fromisoformat(date_to):
+            raise Exception("Past cannot be after future")
+        rows = self._connection.execute('SELECT * FROM gigs WHERE datetime BETWEEN %s AND %s ORDER BY datetime', [date_from + " 00:00", date_to + " 23:59"])
         gigs = []
         for row in rows:
             gigs.append(Gig(row["id"], row["datetime"], row["band"], row["venue"], row["location"], row["postcode"]))
         return gigs
 
-    def get_by_location_and_dates(self, location, date_from="1900-01-01", date_to="3000-01-01"):
+    def get_by_location_and_dates(self, location, date_from="2000-01-01", date_to="2100-01-01"):
         if location == "All":
             gigs_by_location = self.all()
         else:
@@ -44,3 +47,14 @@ class GigRepository:
             if gig in gigs_by_dates:
                 matches.append(gig)
         return matches
+
+    def get_by_band_name(self, band_name):
+        rows = self._connection.execute('SELECT * FROM gigs WHERE band = %s ORDER BY datetime', [band_name])
+        gigs = []
+        for row in rows:
+            gigs.append(Gig(row["id"], row["datetime"], row["band"], row["venue"], row["location"], row["postcode"]))
+        return gigs
+
+    def add_gig(self, gig):
+        self._connection.execute('INSERT INTO gigs (datetime, band, venue, location, postcode) VALUES (%s, %s, %s, %s, %s)',
+            [gig.datetime, gig.band, gig.venue, gig.location, gig.postcode])

@@ -26,3 +26,13 @@ class Gig:
 
     def datetime_pretty(self):
         return self.datetime.strftime("%Y-%m-%d %H:%M")
+
+    def jsonify(self):
+        return {
+            "id": self.id,
+            "datetime": self.datetime_pretty(),
+            "band": self.band,
+            "venue": self.venue,
+            "location": self.location,
+            "postcode": self.postcode
+        }

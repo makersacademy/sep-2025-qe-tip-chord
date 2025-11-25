@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Secret Admin Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <p id="element-293f12a"><img src="/static/images/logo.bmp" width="100px" />Secret Admin Page</p>
+        {% include 'menu_bar.html' %}
+        <p>Content in here is debug only</p>
+        <h3>Add gigs to database</h3>
+        <form action="/admin_add_gig" method="post">
+            <p>
+                <label for="datetime">Datetime</label>
+                <input type="text" name="datetime" id="datetime">
+            </p>
+            <p>
+                <label for="band">Band</label>
+                <input type="text" name="band" id="band">
+            </p>
+            <p>
+                <label for="venue">Venue</label>
+                <input type="text" name="venue" id="venue">
+            </p>
+            <p>
+                <label for="location">Location</label>
+                <input type="text" name="location" id="location">
+            </p>
+            <p>
+                <label for="postcode">Postcode</label>
+                <input type="text" name="postcode" id="postcode">
+            </p>
+            <p>
+                <input type="submit" value="Add Gig">
+            </p>
+        </form>
+    </body>
+</html>

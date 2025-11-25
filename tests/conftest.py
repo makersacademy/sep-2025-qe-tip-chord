@@ -40,3 +40,12 @@ def web_client():
     app.config['TESTING'] = True # This gets us better errors
     with app.test_client() as client:
         yield client
+
+@pytest.fixture
+def logged_in_page_username(page, test_web_address, db_connection):
+    db_connection.seed("seeds/test_users.sql")
+    page.goto(f"http://{test_web_address}/login")
+    page.fill("input[name='username']", "username")
+    page.fill("input[name='password']", "password")
+    page.click("text='Log in'")
+    return page
