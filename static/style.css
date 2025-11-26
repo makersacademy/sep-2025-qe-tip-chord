@@ -5,7 +5,8 @@ body {
     margin-left: 20px;
     max-width: 850px;
 }
-h2 {
+h1 {
+    font-size: 2em !important;
     margin-bottom: 0;
 }
 #logo {
@@ -13,20 +14,20 @@ h2 {
     margin-right: 30px;
 }
 .menu_bar {
-    background-color: black;
+    background-color: rgb(38, 68, 73);
     height: 3em;
     margin-bottom: 10px; /** spacing below menu, before page content **/
 }
 .btn-menu{
     --bs-btn-color:#fff;
-    --bs-btn-bg:#c7c4b9;
-    --bs-btn-border-color:#c7c4b9;
+    --bs-btn-bg:#777469;
+    --bs-btn-border-color:#777469;
     --bs-btn-hover-color:#fff;
-    --bs-btn-hover-bg:#a7a499;
-    --bs-btn-hover-border-color:#a7a499;
-    --bs-btn-active-color:#bfb;
-    --bs-btn-active-bg:#979489;
-    --bs-btn-active-border-color:#979489;
+    --bs-btn-hover-bg:#575449;
+    --bs-btn-hover-border-color:#575449;
+    --bs-btn-active-color:#8ac2d4;
+    --bs-btn-active-bg:#474439;
+    --bs-btn-active-border-color:#474439;
     --bs-btn-padding-y:0.25rem;
     --bs-btn-font-size:0.875rem;
     --bs-btn-border-radius:var(--bs-border-radius-sm)
@@ -45,4 +46,11 @@ h2 {
 }
 .login-field {
     margin-bottom: 10px;
+}
+a {
+    color: #1d7d9c;
+    text-decoration: underline;
+}
+* {
+    font-family: 'Gill Sans';
 }

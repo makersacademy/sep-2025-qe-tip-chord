@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Gigs</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="/static/style.css" >
-        <style>
-a {
-    color: black;
-    text-decoration: none;
-}
-        </style>
     </head>
     <body>
         <script>
@@ -27,13 +21,13 @@ endDate.addEventListener('change',(e)=>{
 })
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <h2 id="element-c27b2f2"><img id="logo" src="/static/images/logo.bmp" width="100px" />Gigs</h2>
+        <h1>{% include 'logo_link.html' %}Gigs</h1>
         {% include 'menu_bar.html' %}
         <div id="page-content">
             <form action="/gigs" method="post">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-2 col-sm-2">
+                        <div class="col-lg-3 col-sm-2">
                             <label for="location">Filter by location:</label>
                             <select class="form-select form-select-sm" aria-label="filter by location" name="location" id="location">
                                 {% for location in locations %}
@@ -45,14 +39,14 @@ endDate.addEventListener('change',(e)=>{
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-lg-1 col-sm-2 date-picker">
+                        <div class="col-lg-2 col-sm-2 date-picker">
                             <label for="date_from">Date from:</label>
-                            <input name="date_from" class="form-control" type="date" value="{{ date_from }}" />
+                            <input name="date_from" class="form-control" type="date" value="{{ date_from }}" id="date_from" />
                             <span id="startDateSelected"></span>
                         </div>
-                        <div class="col-lg-1 col-sm-2 date-picker">
+                        <div class="col-lg-2 col-sm-2 date-picker">
                             <label for="date_to">Date to:</label>
-                            <input name="date_to" class="form-control" type="date" value="{{ date_to }}" />
+                            <input name="date_to" class="form-control" type="date" value="{{ date_to }}" id="date_to" />
                             <span id="endDateSelected"></span>
                         </div>
                         <p><input type="submit" value="Apply filter(s)"></p>
@@ -64,12 +58,12 @@ endDate.addEventListener('change',(e)=>{
                 <div class="gig">
                     <div class="row">
                         <div class="col-lg-9 col-sm-2">
-                            <p class="element-72fdd38"><a href="/bands/{{ gig.band }}">{{ gig.band }}</a> @ {{ gig.venue }}, {{ gig.location }}</p>
-                            <p class="element-7fd0a75">When: {{ gig.datetime_pretty() }}</p>
-                            <p class="element-5c26aa7"><a href="/gigs/{{ gig.id }}">More details & booking</a></p>
+                            <p class="gig-text"><a href="/bands/{{ gig.band }}">{{ gig.band }}</a> @ {{ gig.venue }}, {{ gig.location }}</p>
+                            <p class="gig-date">When: {{ gig.datetime_pretty() }}</p>
+                            <p class="details-booking"><a href="/gigs/{{ gig.id }}">More details & booking</a></p>
                         </div>
                         <div class="col-lg-2 col-sm-2">
-                            <img src="/static/images/band.png" width="110px" />
+                            <img src="/static/images/band.png" width="110px" alt="Band logo placeholder" />
                         </div>
                     </div>
                 </div>

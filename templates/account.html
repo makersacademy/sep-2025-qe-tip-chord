@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Account</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -7,14 +7,15 @@
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <h2 id="element-1cfd0cf"><img id="logo" src="/static/images/logo.bmp" width="100px" />Account</h2>
+        <h1>{% include 'logo_link.html' %}Account</h1>
         {% include 'menu_bar.html' %}
         <div id="page-content">
             {% if booking_details %}
             <p>You currently have these tickets and gigs booked:</p>
             {% for booking_detail in booking_details %}
             <div class="gig">
-                <p class="element-35cbe6d">{{ booking_detail.ticket_count }} for <a href="{{ booking_detail.gig.band }}">{{ booking_detail.gig.band }}</a> @ {{ booking_detail.gig.venue }}, {{ booking_detail.gig.location }} on {{ booking_detail.gig.datetime_pretty() }}</p>
+                <p class="booking-text">{{ booking_detail.ticket_count }} for <a href="/bands/{{ booking_detail.gig.band }}">{{ booking_detail.gig.band }}</a> @ {{ booking_detail.gig.venue }}, {{ booking_detail.gig.location }} on {{ booking_detail.gig.datetime_pretty() }}</p>
+                <p class="cancel" style="text-align: right; padding-right: 20px"><a href="/cancel_booking/{{ booking_detail.id }}" style="color: #E60000; text-decoration: none;">Cancel</a></p>
             </div>
             {% endfor %}
             {% else %}

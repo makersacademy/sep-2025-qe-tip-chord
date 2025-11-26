@@ -49,7 +49,7 @@ class GigRepository:
         return matches
 
     def get_by_band_name(self, band_name):
-        rows = self._connection.execute('SELECT * FROM gigs WHERE band = %s ORDER BY datetime', [band_name])
+        rows = self._connection.execute('SELECT * FROM gigs WHERE LOWER(band) = LOWER(%s) ORDER BY datetime', [band_name])
         gigs = []
         for row in rows:
             gigs.append(Gig(row["id"], row["datetime"], row["band"], row["venue"], row["location"], row["postcode"]))

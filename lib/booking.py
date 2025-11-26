@@ -18,3 +18,15 @@ class Booking:
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+
+    def datetime_pretty(self):
+        return self.datetime.strftime("%Y-%m-%d %H:%M")
+
+    def jsonify(self):
+        return {
+            "id": self.id,
+            "datetime": self.datetime_pretty(),
+            "gig_id": self.gig_id,
+            "user_id": self.user_id,
+            "ticket_count": self.ticket_count
+        }
